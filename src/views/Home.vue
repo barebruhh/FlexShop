@@ -48,9 +48,7 @@
         <!-- Карточки товаров будут здесь -->
       </div>
 
-      <div class="game-editor-container">
-        <GameEditor />
-      </div>
+      
     </main>
 
     <Footer />
@@ -61,7 +59,6 @@
 <script setup>
 import SiteHeader from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
-import GameEditor from '../components/GameEditor.vue'
 </script>
 
 <style>
@@ -122,7 +119,6 @@ body{font-family:Inter, system-ui, Arial, sans-serif;background:#F5F5F5}
 @media (max-width:580px){
 .price-filter{max-width:90%;height:80px}
 
-.game-editor-container{display:flex;justify-content:center;margin-top:40px;margin-bottom:40px;padding:0 20px;box-sizing:border-box}
 .pf-label{white-space: nowrap}
 }
 

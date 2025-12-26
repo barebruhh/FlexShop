@@ -7,7 +7,7 @@
         <div class="products-header">
           <h2 class="products-title">Товары</h2>
           <span class="products-count">шт.</span>
-          <button class="add-product-btn" aria-label="Добавить товар">Добавить товар</button>
+          <button class="add-product-btn" @click="openAddModal" aria-label="Добавить товар">Добавить товар</button>
         </div>
 
         <div class="products-container">
@@ -17,6 +17,12 @@
     </main>
 
     <Footer />
+
+    <div v-if="showAddModal" class="modal-overlay" @click.self="closeAddModal">
+      <div class="modal-window">
+        <SellerProductEditor :product="newProduct" @save="onModalSave" @cancel="closeAddModal" />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -24,6 +30,19 @@
 import { ref } from 'vue'
 import SiteHeader from '../components/Header.vue'
 import Footer from '../components/Footer.vue'
+import SellerProductEditor from '../components/SellerProductEditor.vue'
+
+const showAddModal = ref(false)
+const newProduct = ref({ title: '', description: '', price: 0, image: '', cardImage: '' })
+
+function openAddModal() { showAddModal.value = true }
+function closeAddModal() { showAddModal.value = false }
+
+function onModalSave(payload) {
+  // Здесь можно отправить payload на сервер или добавить в список
+  console.log('Saved from modal', payload)
+  closeAddModal()
+}
 </script>
 
 <style>
@@ -58,4 +77,8 @@ body{font-family:Inter, system-ui, Arial, sans-serif;background:#F5F5F5}
   .add-product-btn{width:100%}
   .products-title{font-size:24px}
 }
+
+.modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.5); display:flex; align-items:center; justify-content:center; z-index:9999 }
+.modal-window { width: min(1505px, 95vw); height: min(865px, 90vh); overflow:auto; background: transparent; border-radius: 18px; padding: 0; box-sizing: border-box; position: relative }
+.modal-window :deep(.product-details) { width: 100%; height: 100%; margin: 0; }
 </style>

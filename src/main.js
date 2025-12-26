@@ -15,7 +15,8 @@ const routes = [
   ,{ path: '/login', component: Login }
   ,{ path: '/cart', component: Cart }
   ,{ path: '/history', component: PurchaseHistory }
-  ,{ path: '/seller', component: SellerPage }
+  ,{ path: '/sellerpage', component: SellerPage }
+  ,{ path: '/seller', redirect: '/sellerpage' }
 ]
 
 const router = createRouter({
